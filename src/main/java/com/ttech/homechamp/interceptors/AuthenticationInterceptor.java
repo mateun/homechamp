@@ -3,8 +3,11 @@ package com.ttech.homechamp.interceptors;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
+import com.ttech.homechamp.models.AuthorizationAware;
+import com.ttech.homechamp.models.AuthorizationInfo;
 import com.ttech.homechamp.models.User;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -31,6 +34,11 @@ public class AuthenticationInterceptor implements Interceptor {
             return Action.LOGIN;
         } else {
             System.out.println("all good, user is logged in!");
+            if (invocation.getAction() instanceof AuthorizationAware) {
+                // TODO retrieve permissions from database
+                AuthorizationInfo authorizationInfo = new AuthorizationInfo(user, new ArrayList<>());
+                ((AuthorizationAware) invocation.getAction()).setAuthInfo(authorizationInfo);
+            }
             return invocation.invoke();
         }
     }
