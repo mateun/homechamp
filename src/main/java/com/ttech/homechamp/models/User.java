@@ -5,6 +5,7 @@ package com.ttech.homechamp.models;
  */
 public class User {
 
+    private int id;
     private String userName;
     private String score;
 
@@ -22,5 +23,13 @@ public class User {
 
     public void setScore(String score) {
         this.score = score;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
