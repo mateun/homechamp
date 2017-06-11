@@ -3,4 +3,18 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    
+    <welcome-file-list>
+        <welcome-file>index2.html</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>com.ttech.homechamp.UserServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>userServlet</servlet-name>
+        <url-pattern>/user</url-pattern>
+    </servlet-mapping>
 </web-app>
