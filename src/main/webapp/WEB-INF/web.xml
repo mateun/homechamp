@@ -8,13 +8,26 @@
         <welcome-file>index2.html</welcome-file>
     </welcome-file-list>
 
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>userServlet</servlet-name>
         <servlet-class>com.ttech.homechamp.UserServlet</servlet-class>
     </servlet>
-    
+
+
     <servlet-mapping>
         <servlet-name>userServlet</servlet-name>
         <url-pattern>/user</url-pattern>
     </servlet-mapping>
+
+
 </web-app>

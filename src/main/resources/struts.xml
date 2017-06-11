@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+
+    <package name="basicstruts2" extends="struts-default">
+
+        <interceptors>
+            <interceptor name="authentication"
+                         class="com.ttech.homechamp.interceptors.AuthenticationInterceptor"></interceptor>
+            <interceptor-stack name="authStack">
+                <interceptor-ref name="authentication"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="authStack"></default-interceptor-ref>
+
+        <global-results>
+                    <result name="login" type="redirect">/loginPage.action</result>
+        </global-results>
+
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+
+        <action name="loginPage" class="com.ttech.homechamp.actions.LoginAction">
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="input">/Login.jsp</result>
+        </action>
+
+        <action name="doLogin" class="com.ttech.homechamp.actions.LoginAction" method="doLogin">
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/Welcome.jsp</result>
+            <result name="input">/Login.jsp</result>
+        </action>
+
+        <action name="*User" class="com.ttech.homechamp.actions.UserAction" method="{1}">
+            <result name="input" >/UserCreateForm.jsp</result>
+            <result name="success">/UserInfo.jsp</result>
+        </action>
+
+
+
+    </package>
+
+</struts>
